@@ -26,6 +26,8 @@ rules:
     - never
   no-undef:
     - error
+  react/prop-types:
+    - 0
 globals: 
   module: true
   

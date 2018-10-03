@@ -1,6 +1,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import styled from 'styled-components'
+import Volume from './Volume'
 
 const Title = styled.h1`
 	font-family: 'Cutive Mono', monospace;
@@ -17,6 +18,9 @@ const SubTitle = styled.h3`
 const Fraction = styled.div`
 	font-family: 'Cutive Mono', monospace;
 	font-size: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `
 
 const Row = styled.div`
@@ -24,47 +28,47 @@ const Row = styled.div`
 	flex-direction: row;
 `
 
-const Input = styled.input`
-	height: 30px;
-`
-
-const Ratio = () => (
+const Ratio = ({ onOneGramm }) => (
 	<div>
 		<SubTitle>ratio</SubTitle>
-		<Fraction>1/14</Fraction>
+		<Fraction>{`1/${onOneGramm}`}</Fraction>
 	</div>
 )
 
-class Volume extends React.Component {
+const Result = styled.p`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Cutive Mono', monospace;
+	font-size: 100px;
+`
+
+class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
 			volume: 0,
+			ratio: 14,
 		}
-		this.handler = this.handler.bind(this)
+		this.onVolumeChange = this.onVolumeChange.bind(this)
 	}
 
-	handler(e) {
+	onVolumeChange(e) {
 		this.setState({ volume: e.target.value })
 	}
 
 	render() {
 		return (
-			<Input type="number" name="volume" value={this.state.volume} onChange={this.handler} />
+			<div>
+				<Title>Count your beans!</Title>
+				<Row>
+					<Ratio onOneGramm={this.state.ratio} />
+					<Volume volume={this.state.volume} onVolumeChange={this.onVolumeChange} />
+				</Row>
+				<Result>{Math.floor(this.state.volume / this.state.ratio)}</Result>
+			</div>
 		)
 	}
-}
-
-const App = () => {
-	return (
-		<div>
-			<Title>Count your beans!</Title>
-			<Row>
-				<Ratio />
-				<Volume />
-			</Row>
-		</div>
-	)
 }
 
 export default hot(module)(App)
