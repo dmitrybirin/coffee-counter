@@ -21,6 +21,7 @@ class Volume extends React.Component {
 					<Input
 						type="number"
 						name="volume"
+						placeholder={0}
 						value={this.props.volume}
 						onChange={this.props.onVolumeChange}
 					/>
@@ -39,8 +40,8 @@ const InputContainer = styled.div`
 const Input = styled.input`
 	font-family: 'Cutive Mono', monospace;
 	font-size: 100px;
-	width: 50%;
 	border-radius: 2px;
+	width: 300px;
 	border: none;
 	text-align: center;
 	background: rgba(0, 0, 0, 0);

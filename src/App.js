@@ -26,6 +26,7 @@ const Fraction = styled.div`
 const Row = styled.div`
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 `
 
 const Ratio = ({ onOneGramm }) => (
@@ -37,20 +38,25 @@ const Ratio = ({ onOneGramm }) => (
 
 const Result = styled.p`
 	display: flex;
-	align-items: center;
 	justify-content: center;
 	font-family: 'Cutive Mono', monospace;
 	font-size: 100px;
+	margin:0
 `
 
 class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			volume: 0,
+			volume: '',
 			ratio: 14,
 		}
 		this.onVolumeChange = this.onVolumeChange.bind(this)
+	}
+
+	calculateSting(){
+		const result = this.state.volume / this.state.ratio
+		return `${Number.isInteger(result) ? '' : '~'}${Math.floor(result)}`
 	}
 
 	onVolumeChange(e) {
@@ -65,7 +71,8 @@ class App extends React.Component {
 					<Ratio onOneGramm={this.state.ratio} />
 					<Volume volume={this.state.volume} onVolumeChange={this.onVolumeChange} />
 				</Row>
-				<Result>{Math.floor(this.state.volume / this.state.ratio)}</Result>
+				<SubTitle>gramms</SubTitle>
+				<Result>{this.calculateSting()}</Result>
 			</div>
 		)
 	}
