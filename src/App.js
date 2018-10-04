@@ -2,6 +2,8 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import styled from 'styled-components'
 import Volume from './Volume'
+import { counter } from './models/counter'
+import { observer } from 'mobx-react'
 
 const Title = styled.h1`
 	font-family: 'Cutive Mono', monospace;
@@ -41,41 +43,21 @@ const Result = styled.p`
 	justify-content: center;
 	font-family: 'Cutive Mono', monospace;
 	font-size: 100px;
-	margin:0
+	margin: 0;
 `
 
-class App extends React.Component {
-	constructor() {
-		super()
-		this.state = {
-			volume: '',
-			ratio: 14,
-		}
-		this.onVolumeChange = this.onVolumeChange.bind(this)
-	}
+const App = () => (
+	<div>
+		<Title>Count your beans!</Title>
+		<Row>
+			<Ratio onOneGramm={counter.ratio} />
+			<Volume />
+		</Row>
+		<SubTitle>gramms</SubTitle>
+		<Result>{`${Number.isInteger(counter.gramms) ? '' : '~'}${Math.floor(
+			counter.gramms
+		)}`}</Result>
+	</div>
+)
 
-	calculateSting(){
-		const result = this.state.volume / this.state.ratio
-		return `${Number.isInteger(result) ? '' : '~'}${Math.floor(result)}`
-	}
-
-	onVolumeChange(e) {
-		this.setState({ volume: e.target.value })
-	}
-
-	render() {
-		return (
-			<div>
-				<Title>Count your beans!</Title>
-				<Row>
-					<Ratio onOneGramm={this.state.ratio} />
-					<Volume volume={this.state.volume} onVolumeChange={this.onVolumeChange} />
-				</Row>
-				<SubTitle>gramms</SubTitle>
-				<Result>{this.calculateSting()}</Result>
-			</div>
-		)
-	}
-}
-
-export default hot(module)(App)
+export default hot(module)(observer(App))

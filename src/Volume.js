@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { counter } from './models/counter'
+import { observer } from 'mobx-react'
 
 const SubTitle = styled.h3`
 	font-family: 'Cutive Mono', monospace;
@@ -8,28 +10,20 @@ const SubTitle = styled.h3`
 	text-align: center;
 `
 
-class Volume extends React.Component {
-	constructor() {
-		super()
-	}
-
-	render() {
-		return (
-			<div>
-				<SubTitle>volume</SubTitle>
-				<InputContainer>
-					<Input
-						type="number"
-						name="volume"
-						placeholder={0}
-						value={this.props.volume}
-						onChange={this.props.onVolumeChange}
-					/>
-				</InputContainer>
-			</div>
-		)
-	}
-}
+const Volume = () => (
+	<div>
+		<SubTitle>volume</SubTitle>
+		<InputContainer>
+			<Input
+				type="number"
+				name="volume"
+				placeholder={0}
+				value={counter.volume}
+				onChange={e => counter.changeVolume(e.target.value)}
+			/>
+		</InputContainer>
+	</div>
+)
 
 const InputContainer = styled.div`
 	display: flex;
@@ -47,4 +41,4 @@ const Input = styled.input`
 	background: rgba(0, 0, 0, 0);
 `
 
-export default Volume
+export default observer(Volume)
