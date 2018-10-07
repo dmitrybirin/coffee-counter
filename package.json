@@ -7,38 +7,27 @@
 	"author": "",
 	"license": "ISC",
 	"scripts": {
-		"start": "webpack-dev-server --mode=development",
-		"build": "webpack --mode=production"
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {
+		"eslint-plugin-vue": "^5.0.0-beta.3",
 		"mobx": "^5.5.0",
-		"mobx-react": "^5.2.8",
+		"mobx-devtools-mst": "^0.9.18",
 		"mobx-state-tree": "^3.5.0",
-		"react": "^16.5.2",
-		"react-dom": "^16.5.2",
-		"styled-components": "^3.4.9"
+		"vue": "^2.5.17"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.1.0",
-		"@babel/core": "^7.1.0",
-		"@babel/preset-env": "^7.1.0",
-		"@babel/preset-react": "^7.0.0",
-		"@babel/preset-stage-2": "^7.0.0",
-		"babel-loader": "^8.0.2",
-		"babel-plugin-styled-components": "^1.8.0",
-		"eslint": "^5.6.1",
+		"@vue/cli-plugin-babel": "^3.0.4",
+		"@vue/cli-plugin-eslint": "^3.0.4",
+		"@vue/cli-service": "^3.0.4",
 		"eslint-config-prettier": "^3.1.0",
 		"eslint-plugin-prettier": "^3.0.0",
-		"eslint-plugin-react": "^7.11.1",
-		"html-loader": "^0.5.5",
-		"html-webpack-plugin": "^3.2.0",
 		"husky": "^1.1.0",
 		"lint-staged": "^7.3.0",
 		"prettier": "1.14.3",
-		"react-hot-loader": "^4.3.11",
-		"webpack": "^4.19.1",
-		"webpack-cli": "^3.1.0",
-		"webpack-dev-server": "^3.1.8"
+		"vue-template-compiler": "^2.5.17"
 	},
 	"husky": {
 		"hooks": {
@@ -47,7 +36,7 @@
 	},
 	"lint-staged": {
 		"*.js": [
-			"eslint --fix",
+			"vue-cli-service lint --fix",
 			"prettier --write",
 			"git add"
 		]

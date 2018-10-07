@@ -1,4 +1,5 @@
 const { types } = require('mobx-state-tree')
+import makeInspectable from 'mobx-devtools-mst'
 
 const Counter = types
 	.model('Counter', {
@@ -19,8 +20,12 @@ const Counter = types
 		},
 	}))
 
-export const counter = Counter.create({
+let counter = Counter.create({
 	ratio: 14,
 	volume: '',
 	gramms: 0,
 })
+
+counter = makeInspectable(counter)
+
+export { counter }
