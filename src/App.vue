@@ -4,7 +4,7 @@
 		<div id="row">
 			<div>
 		    <h3 id="subtitle">ratio</h3>
-		    <div id="fraction">{{onOneGramm}}</div>
+		    <div id="fraction">{{  `1/${counter.ratio}` }}</div>
 	    </div>
 			<Volume />
 		</div>
@@ -23,7 +23,6 @@ export default {
 		Volume,
 	},
 	data: () => ({
-		onOneGramm: `1/${counter.ratio}`,
 		counter,
 	}),
 }
