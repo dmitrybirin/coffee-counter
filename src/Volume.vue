@@ -6,7 +6,6 @@
 				type="number"
 				name="volume"
         :placeholder='0'
-        :value="counter.volume"
         @input="onValueChange"
 			/>
 		</div>
@@ -17,7 +16,7 @@
 import { counter } from './models/counter'
 
 export default {
-	name: 'HelloWorld',
+	name: 'Volume',
 	props: {
 		msg: String,
 	},
