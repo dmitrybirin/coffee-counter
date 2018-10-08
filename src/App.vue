@@ -9,7 +9,7 @@
 			<Volume />
 		</div>
 		<h3 id="subtitle">gramms</h3>
-		<p id="result">{{ result }}</p>
+		<p id="result">{{ `${Number.isInteger(counter.gramms) ? '' : '~'}${Math.floor(counter.gramms)}` }}</p>
 	</div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 	},
 	data: () => ({
 		onOneGramm: `1/${counter.ratio}`,
-		result: `${Number.isInteger(counter.gramms) ? '' : '~'}${Math.floor(counter.gramms)}`,
+		counter,
 	}),
 }
 </script>
